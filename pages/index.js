@@ -28,7 +28,10 @@ export default function Home() {
     s.set("state", [...chat, msg]);
   };
 
-  console.log(chat);
+  const clear = () => {
+    const s = yd.getMap("state");
+    s.set("state", []);
+  };
 
   return (
     <div className={styles.container}>
@@ -38,8 +41,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <input type="text" value={msg} onChange={(e) => setMsg(e.target.value)} />
-      <button onClick={send}>Send</button>
+      <form onSubmit={() => {}}>
+        <input
+          type="text"
+          value={msg}
+          onChange={(e) => setMsg(e.target.value)}
+        />
+        <button onClick={send}>Send</button>
+        <button onClick={clear}>Clear</button>
+      </form>
       {chat.map((msg, i) => (
         <div key={i}>{msg}</div>
       ))}
